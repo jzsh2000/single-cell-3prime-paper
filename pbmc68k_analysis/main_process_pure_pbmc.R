@@ -68,6 +68,7 @@ sub_idx <-list(data.frame(sample=1, use=(get_pure_pop_idx(genes,pure_id[1],all_p
                data.frame(sample=10,use=(get_pure_pop_idx(genes,pure_id[10],all_pure_pca[[10]],all_pure_tsne[[10]],FIG_DIR))),
                data.frame(sample=10,use=(get_pure_pop_idx(genes,pure_id[11],all_pure_pca[[10]],all_pure_tsne[[10]],FIG_DIR))))
 pure_select_11<-lapply(1:length(sub_idx),function(i) {subsampled_purified_mats[[sub_idx[[i]]$sample[1]]][sub_idx[[i]]$use,]})
+saveRDS(pure_select_11, file=file.path(DATA_DIR, "pure_select_11.rds"))
 # -------------------------------------------------
 # build correlation heatmap
 # this produces Supp. Fig. 7 in the manuscript
@@ -82,4 +83,4 @@ pheatmap(pure_select_11_cor,color=colorRampPalette(c("gray100", 'gray30'))(20),c
 # save mean expression for the 11 types
 # ------------------------------------------
 pure_11 <- list(pure_id=pure_id, pure_avg=pure_avg, pure_use_genes=pure_use_genes)
-saveRDS(pure_11,file=file.path(DATA_DIR, "all_pure_select_11types.rds"))
+saveRDS(pure_11,file=file.path(DATA_DIR, "_all_pure_select_11types.rds"))
